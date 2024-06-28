@@ -1,0 +1,39 @@
+@use '../abstracts/' as *;
+
+.ui-toggle {
+  $label-bg-clr: (active: map-get($secondary-clr, 600), inactive: map-get($gray-clr, 700));
+  & > input {
+    display: none;
+  }
+
+  & > input:checked + label {
+    background-color: map-get($label-bg-clr, active);
+
+    &::before {
+      transform: translateX(100%) rotate(180deg);
+    }
+  }
+
+  & > label {
+    $label-height: 24px;
+    $label-padding: 2px;
+    display: block;
+    padding: $label-padding;
+    width: ($label-height * 2);
+    height: $label-height;
+    background-color: map-get($label-bg-clr, inactive);
+    border-radius: calc(($label-height + $label-padding * 2) / 2);
+    cursor: pointer;
+    transition: background-color get-transition-time('medium');
+
+    &::before {
+      content: '';
+      display: block;
+      height: 100%;
+      aspect-ratio: 1/1;
+      background-color: #fff;
+      border-radius: 50%;
+      transition: transform get-transition-time('medium');
+    }
+  }
+}

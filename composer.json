@@ -1,0 +1,19 @@
+{
+    "name": "asus/jins-plugin",
+    "description": "Composer for jin's plugin",
+    "type": "project",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "kimraejin",
+            "email": "phantrunghieu1291@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Inc\\": "./inc"
+        }
+    }
+}

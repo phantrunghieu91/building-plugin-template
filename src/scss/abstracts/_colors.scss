@@ -1,0 +1,5 @@
+@use 'functions' as *;
+
+$primary-clr: create-color-map(darkviolet);
+$secondary-clr: create-color-map(deepskyblue);
+$gray-clr: create-color-map(dimgray);

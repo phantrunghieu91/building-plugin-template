@@ -1,0 +1,54 @@
+@use '../abstracts/' as *;
+@use 'sass:color';
+
+.cpt-display {
+  $cell-padding: 0.625em;
+  $table-border-color: map-get($gray-clr, 900);
+  border-collapse: collapse;
+  margin-block: 1em;
+  width: 100%;
+  border: 2px solid $table-border-color;
+
+  & caption {
+    font-size: 2em;
+    font-weight: bold;
+    line-height: 1.5;
+    margin-bottom: 1em;
+    text-transform: uppercase;
+  }
+
+  & :is(th, td) {
+    padding: $cell-padding;
+    border: 1px solid map-get($gray-clr, 300);
+    text-align: center;
+  }
+
+  & th {
+    background-color: map-get($gray-clr, 100);
+    border-bottom-width: 2px;
+    border-bottom-color: $table-border-color;
+  }
+
+  & .dashicons-yes-alt {
+    color: limegreen;
+  }
+
+  & .dashicons-no-alt {
+    color: crimson;
+  }
+
+  & td:has(.edit-cpt) {
+    & :is(.edit-cpt, .cpt-display__delete) {
+      display: inline-block;
+    }
+
+    & .cpt-display__delete .delete {
+      border-color: crimson;
+      background-color: crimson;
+      color: #fff;
+      &:hover {
+        background-color: lighten(crimson, 10%);
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+$transition-time: (
+  fast: 300ms,
+  medium: 500ms,
+  slow: 800ms,
+  slower: 1000ms
+);
+
+@function get-transition-time($time: fast) {
+  @return map-get($transition-time, $time);
+}
