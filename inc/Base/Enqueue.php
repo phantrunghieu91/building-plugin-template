@@ -15,8 +15,9 @@ class Enqueue extends BaseController {
   }
 
   public function enqueueAdminsScripts(){
+    wp_enqueue_media();
     wp_enqueue_style('jins-plugin-style', $this->plugin_url . 'assets/css/jins-plugin.min.css', [], null, 'all');
-    wp_enqueue_script('jins-plugins-cript', $this->plugin_url . 'assets/js/jins-plugin.min.js', ['jquery'], null, true);
+    wp_enqueue_script('jins-plugins-script', $this->plugin_url . 'assets/js/jins-plugin.min.js', ['jquery'], null, true);
   }
   
   public function enqueueFrontEndScripts() {
