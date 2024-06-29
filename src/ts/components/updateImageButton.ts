@@ -25,7 +25,7 @@ export default class UpdateImageButton {
         title: 'Upload Image',
         multiple: false,
       });
-      wpMedia.on('select', function () {
+      wpMedia.on('select', () => {
         const attachment = wpMedia.state().get('selection').first().toJSON();
         this.changeInputValue(imageInput, attachment.url);
         if (imagePreview) imagePreview.src = attachment.url;
@@ -47,7 +47,7 @@ export default class UpdateImageButton {
     this.changeInputValue(imageInput, '');
     imagePreview.remove();
   };
-  protected changeInputValue(input: HTMLInputElement, value: string) {
+  changeInputValue(input: HTMLInputElement, value: string) {
     input.value = value;
     input.dispatchEvent(new Event('input', { bubbles: true }));
   }
