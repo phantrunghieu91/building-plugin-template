@@ -2,16 +2,44 @@
 /** 
  * @package JinsPlugin
  */
+
 namespace Inc\Api\Widgets;
 
 use WP_Widget;
 
+/**
+ * Class MediaWidget
+ * 
+ * This class represents a custom media widget for the JinsPlugin.
+ * It extends the WP_Widget class and provides methods for registering, displaying, and updating the widget.
+ */
 class MediaWidget extends WP_Widget
 {
+  /**
+   * @var string $ID The unique identifier for the widget.
+   */
   public $ID;
+
+  /**
+   * @var string $name The name of the widget.
+   */
   public $name;
+
+  /**
+   * @var array $options The options for the widget.
+   */
   public $options = [];
+
+  /**
+   * @var array $control_options The control options for the widget.
+   */
   public $control_options = [];
+
+  /**
+   * MediaWidget constructor.
+   * 
+   * Initializes the widget by setting the ID, name, options, and control options.
+   */
   public function __construct()
   {
     $this->ID = 'jins_media_widget';
@@ -26,6 +54,13 @@ class MediaWidget extends WP_Widget
       'height' => 350
     ];
   }
+
+  /**
+   * Registers the widget.
+   * 
+   * This method is called to register the widget with WordPress.
+   * It calls the parent constructor and adds an action to the 'widgets_init' hook.
+   */
   public function register()
   {
     parent::__construct($this->ID, $this->name, $this->options, $this->control_options);
@@ -33,11 +68,24 @@ class MediaWidget extends WP_Widget
     add_action('widgets_init', [$this, 'widgetInit']);
   }
 
+  /**
+   * Initializes the widget.
+   * 
+   * This method is called to initialize the widget by registering it with WordPress.
+   */
   public function widgetInit()
   {
     register_widget($this);
   }
-  // Front-end display of widget, override WP_Widget form method
+
+  /**
+   * Displays the widget form on the front-end.
+   * 
+   * This method is called to display the widget form on the front-end.
+   * It overrides the WP_Widget form method.
+   * 
+   * @param array $instance The current instance of the widget.
+   */
   public function form($instance)
   {
     $title = !empty($instance['title']) ? $instance['title'] : esc_html__('Jin\'s Widget', 'jins_plugin');
@@ -62,6 +110,15 @@ class MediaWidget extends WP_Widget
     </p>
     <?php
   }
+
+  /**
+   * Displays the widget on the front-end.
+   * 
+   * This method is called to display the widget on the front-end.
+   * 
+   * @param array $args The widget arguments.
+   * @param array $instance The current instance of the widget.
+   */
   public function widget($args, $instance)
   {
     echo $args['before_widget'];
@@ -75,6 +132,16 @@ class MediaWidget extends WP_Widget
 
     echo $args['after_widget'];
   }
+
+  /**
+   * Updates the widget instance.
+   * 
+   * This method is called to update the widget instance.
+   * 
+   * @param array $new_instance The new instance of the widget.
+   * @param array $old_instance The old instance of the widget.
+   * @return array The updated instance of the widget.
+   */
   public function update($new_instance, $old_instance)
   {
     $instance = $old_instance;
