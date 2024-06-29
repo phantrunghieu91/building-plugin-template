@@ -1,7 +1,11 @@
-import HandleTabs from "./components/tabs";
-import { customPostType } from "./pages/cpt";
+import HandleTabs from './components/tabs';
+import UpdateImageButton from './components/updateImageButton';
+import { customPostType } from './pages/cpt';
 
-document.addEventListener('DOMContentLoaded', function(domEvent){
-  const handleTabs = new HandleTabs();  
+declare const wp: any;
+
+document.addEventListener('DOMContentLoaded', function (domEvent) {
+  const handleTabs = new HandleTabs();
+  const updateImage = new UpdateImageButton(wp);
   customPostType.init();
 });
