@@ -25,8 +25,8 @@ const paths = {
     watch: 'src/scss/**/*.scss',
   },
   ts: {
-    src: 'src/ts',
-    entries: '/jins-plugin.ts',
+    src: 'src/ts/',
+    entries: ['jins-plugin', 'jins-plugin-frontend'],
     dest: './assets/js',
     watch: 'src/ts/**/*.ts',
   },
@@ -56,40 +56,42 @@ function compileScss() {
     .pipe(dest(paths.scss.dest));
 }
 function bundleJS() {
-  const watchedBrowserify = watchify(
-    browserify({
-      basedir: '.',
-      debug: true,
-      entries: [paths.ts.src + paths.ts.entries],
-      cache: {},
-      packageCache: {},
-    })
-  )
-    .on('log', fancyLog)
-    .plugin('tsify')
-    .transform(
-      Babelify.configure({
-        extensions: ['.ts'],
-        presets: ['@babel/preset-env'],
+  paths.ts.entries.map(entry => {
+    const watchedBrowserify = watchify(
+      browserify({
+        basedir: paths.ts.src,
+        debug: true,
+        entries: [`${entry}.ts`],
+        cache: {},
+        packageCache: {},
       })
-    ); // Use tsify plugin to compile TypeScript
-  function reBundle() {
-    return watchedBrowserify
-      .bundle()
-      .pipe(source('jins-plugin.min.js'))
-      .pipe(buffer())
-      .pipe(sourcemaps.init({ loadMaps: true }))
-      .pipe(terser()) // Minify the output
-      .pipe(
-        sourcemaps.write({
-          includeContent: false,
-          sourceRoot: `../../`, // This is the path to the source file in the sourcemap
+    )
+      .on('log', fancyLog)
+      .plugin('tsify')
+      .transform(
+        Babelify.configure({
+          extensions: ['.ts'],
+          presets: ['@babel/preset-env'],
         })
-      )
-      .pipe(dest(paths.ts.dest));
-  }
-  watchedBrowserify.on('update', reBundle);
-  return reBundle();
+      ); // Use tsify plugin to compile TypeScript
+    function reBundle() {
+      return watchedBrowserify
+        .bundle()
+        .pipe(source(`${entry}.min.js`))
+        .pipe(buffer())
+        .pipe(sourcemaps.init({ loadMaps: true }))
+        .pipe(terser()) // Minify the output
+        .pipe(
+          sourcemaps.write({
+            includeContent: false,
+            sourceRoot: `../../${paths.ts.src}`, // This is the path to the source file in the sourcemap
+          })
+        )
+        .pipe(dest(paths.ts.dest));
+    }
+    watchedBrowserify.on('update', reBundle);
+    return reBundle();
+  });
 }
 function watchFiles() {
   watch(paths.scss.watch, compileScss);
