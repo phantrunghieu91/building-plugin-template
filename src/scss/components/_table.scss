@@ -3,7 +3,7 @@
 
 .cpt-display {
   $cell-padding: 0.625em;
-  $table-border-color: map-get($gray-clr, 900);
+  $table-border-color: map-get($gray-clrs, 900);
   border-collapse: collapse;
   margin-block: 1em;
   width: 100%;
@@ -19,22 +19,22 @@
 
   & :is(th, td) {
     padding: $cell-padding;
-    border: 1px solid map-get($gray-clr, 300);
+    border: 1px solid map-get($gray-clrs, 300);
     text-align: center;
   }
 
   & th {
-    background-color: map-get($gray-clr, 100);
+    background-color: map-get($gray-clrs, 100);
     border-bottom-width: 2px;
     border-bottom-color: $table-border-color;
   }
 
   & .dashicons-yes-alt {
-    color: limegreen;
+    color: map-get($success-clrs, 600);
   }
 
   & .dashicons-no-alt {
-    color: crimson;
+    color: map-get($danger-clrs, 600);
   }
 
   & td:has(.edit-cpt) {

@@ -20,13 +20,13 @@
 .nav__item {
   text-transform: capitalize;
   padding: .625em 1em;
-  color: map-get($secondary-clr, 700);
+  color: map-get($secondary-clrs, 700);
   background-color: transparent;
   cursor: pointer;
   transition: color get-transition-time(), background-color get-transition-time();
   
   &:is(:hover, .nav__item--active){
-    color: map-get($primary-clr, 600);
+    color: map-get($primary-clrs, 600);
     background-color: white;
   }
   
@@ -53,7 +53,7 @@
 // @for $i from 1 through 9 {
 //   .ui-toggle:nth-child(#{$i}) {
 //     th {
-//       background-color: map-get($gray-clr, $i * 100);
+//       background-color: map-get($gray-clrs, $i * 100);
 //     }
 //   }
 // }

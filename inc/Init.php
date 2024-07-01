@@ -26,6 +26,7 @@ final class Init
       Base\SettingsLinks::class,
       Base\CustomPostTypeController::class,
       Base\WidgetController::class,
+      Base\TestimonialController::class,
     ];
   }
 

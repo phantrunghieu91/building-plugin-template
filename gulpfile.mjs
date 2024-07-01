@@ -26,7 +26,7 @@ const paths = {
   },
   ts: {
     src: 'src/ts/',
-    entries: ['jins-plugin', 'jins-plugin-frontend'],
+    entries: ['jins-plugin', 'jins-plugin-form', 'jins-plugin-slider'],
     dest: './assets/js',
     watch: 'src/ts/**/*.ts',
   },

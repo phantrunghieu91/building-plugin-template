@@ -1,7 +1,7 @@
 @use '../abstracts/' as *;
 
 .ui-toggle {
-  $label-bg-clr: (active: map-get($secondary-clr, 600), inactive: map-get($gray-clr, 700));
+  $label-bg-clr: (active: map-get($secondary-clrs, 600), inactive: map-get($gray-clrs, 700));
   & > input {
     display: none;
   }

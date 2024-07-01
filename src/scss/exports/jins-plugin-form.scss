@@ -1,0 +1,104 @@
+@use "../abstracts/" as *;
+@use "../base/" as *;
+
+.jins-plugin-form {
+  $success-clr: map-get($success-clrs, 400);
+  $error-clr: map-get($danger-clrs, 400);
+  $button-clr: map-get($primary-clrs, 700);
+  $field-border-radius: .25em;
+  padding: 3em 2em;
+  background-color: map-get($secondary-clrs, 100);
+  max-width: 30em;
+
+  &__form-message {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 500ms;
+
+    :is(&--success, &--error, &--loading) {
+      max-height: fit-content;
+      line-height: 1.5;
+      margin-bottom: 1em;
+    }
+
+    &--success {
+      color: $success-clr;
+    }
+    &--error {
+      color: $error-clr;
+    }
+    &--loading {
+      color: map-get($gray-clrs, 900);
+    }
+  }
+
+  &__form-group {
+    margin-bottom: 1em;
+  }
+
+  &__field {
+    width: 100%;
+    font-family: var(--base-font);
+    font-size: 1rem;
+    padding: .625em;
+    border: 1px solid map-get($gray-clrs, 600);
+    border-radius: $field-border-radius;
+    transition: border-color get-transition-time(), outline get-transition-time();
+
+    &:is(:focus-visible, :hover) {
+      border-color: transparent;
+      outline: 2px solid map-get($secondary-clrs, 700);
+    }
+
+    &:invalid {
+      border-color: transparent;
+      outline: 2px solid $error-clr;
+    }
+  }
+
+  &__field-error-message {
+    display: block;
+    color: $error-clr;
+    max-height: 0;
+    overflow: hidden;
+
+    &--show {
+      max-height: fit-content;
+    }
+  }
+
+  &__button-group {
+    display: flex;
+    gap: 1em;
+  }
+
+  :is(&__submit-btn, &__reset-btn) {
+    flex: 1;
+    padding: 1em 2em;
+    text-transform: uppercase;
+    font-weight: 700;
+    border: 1px solid $button-clr;
+    border-radius: $field-border-radius;
+    cursor: pointer;
+    transition: background-color get-transition-time(), color get-transition-time();
+  }
+
+  &__submit-btn {
+    background-color: $button-clr;
+    color: #fff;
+
+    &:hover {
+      background-color: darken($button-clr, 10%);
+    }
+  }
+
+  &__reset-btn {
+    background-color: #fff;
+    color: $button-clr;
+
+    &:hover {
+      background-color: lighten($button-clr, 20%);
+      color: #fff;
+    }
+  }
+}
