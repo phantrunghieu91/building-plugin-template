@@ -28,6 +28,12 @@ class CustomTemplatesController extends BaseController {
     global $post;
     if ( ! $post ) return $template;
 
+    // Check if is front page then load the custom front page template to override the default front page template
+    if ( is_front_page() ) {
+      $file = $this->plugin_path . 'page-templates/front-page.php';
+      if( file_exists( $file ) ) return $file;
+    }
+
     $template_name = get_post_meta( $post->ID, '_wp_page_template', true );
     if ( ! isset( $this->templates[$template_name] ) ) return $template;
     $file = $this->plugin_path . $template_name;
