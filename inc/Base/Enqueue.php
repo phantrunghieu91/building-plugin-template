@@ -28,7 +28,7 @@ class Enqueue extends BaseController
   public function enqueueFrontEndScripts()
   {
     // check if login_manager is activated
-    if ($this->isActivated('login_manager')) {
+    if ($this->isActivated('login_manager') && ! is_user_logged_in() ) {
       wp_enqueue_style('jins-plugin-auth', $this->plugin_url . 'assets/css/jins-plugin-auth.min.css', [], null, 'all');
       wp_enqueue_script('jins-plugins-auth', $this->plugin_url . 'assets/js/jins-plugin-auth.min.js', ['jquery'], null, true);
     }
