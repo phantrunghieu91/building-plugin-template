@@ -21,6 +21,7 @@ class Enqueue extends BaseController {
   }
   
   public function enqueueFrontEndScripts() {
-
+    wp_enqueue_style('jins-plugin-auth', $this->plugin_url . 'assets/css/jins-plugin-auth.min.css', [], null, 'all');
+    wp_enqueue_script('jins-plugins-auth', $this->plugin_url . 'assets/js/jins-plugin-auth.min.js', ['jquery'], null, true);
   }
 }
