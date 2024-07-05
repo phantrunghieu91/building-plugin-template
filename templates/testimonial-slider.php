@@ -12,10 +12,11 @@
     <div class="jins-plugin-testimonial-slider__slider-wrapper">
       <?php foreach ($testimonials as $testimonial):
         $testimonial_meta = get_post_meta($testimonial->ID, $meta_key, true);
+        setup_postdata( $testimonial );
         ?>
         <div class="jins-plugin-testimonial-slider__testimonial">
           <div class="jins-plugin-testimonial-slider__testimonial-content">
-            <p><?= esc_html($testimonial->post_content); ?></p>
+            <p><?php the_content() ?></p>
           </div>
           <div class="jins-plugin-testimonial-slider__testimonial-author">
             <p><?= esc_html($testimonial_meta['author']); ?></p>
@@ -23,7 +24,8 @@
               href="mailto:<?= esc_attr($testimonial_meta['author_email']) ?>"><?= esc_html($testimonial_meta['author_email']) ?></a>
           </div>
         </div>
-      <?php endforeach; ?>
+      <?php endforeach;
+      wp_reset_postdata( ) ?>
     </div>
     <a class="jins-plugin-testimonial-slider__button-prev" href="javascript:void(0);">
       <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="blue" stroke="blue" stroke-linecap="round" stroke-linejoin="round" >

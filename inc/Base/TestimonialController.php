@@ -98,6 +98,7 @@ class TestimonialController extends BaseController
       'exclude_from_search' => true,
       'publicly_queryable' => false,
       'supports' => ['title', 'editor', 'thumbnail'],
+      'show_in_rest' => true,
     ]);
   }
   public function addMetaBoxes()
