@@ -1,0 +1,114 @@
+@use '../abstracts/' as *;
+
+.jins-auth {
+  position: absolute;
+  top: 0em;
+  right: 0em;
+  z-index: 10;
+  // overflow: hidden;
+
+  &__show-auth-form-btn {
+    $button-bg: map-get($primary-clrs, 400);
+    margin-top: 1em;
+    margin-right: 1em;
+    padding: 0.5em 1em;
+    display: block;
+    color: #fff;
+    font-size: 1.2em;
+    font-weight: 600;
+    border: 1px solid $button-bg;
+    background-color: $button-bg;
+    cursor: pointer;
+    transition: get-transition-time();
+
+    &:hover {
+      transform: translateY(-0.1em) scale(1.02);
+      box-shadow: 0 0.25em .5em rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  &__dialog {
+    padding: 2em;
+    width: 60vw;
+    max-width: 30em;
+    margin: auto;
+    border: 0;
+
+    &-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 2em;
+    }
+  }
+  &__close-dialog-btn {
+    width: 2rem;
+    height: 2rem;
+    border: 0;
+    background-color: transparent;
+    font-size: 2em;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+
+    &-group {
+      display: grid;
+      align-items: center;
+      gap: .625em;
+      
+      &:has(label, input) {
+        grid-template-columns: 6em 1fr;
+      }
+
+      &:not(:has(label, input)) {
+        grid-template-columns: 1fr;
+
+        span, a {
+          text-align: center;
+        }
+      }
+
+      label {
+        font-size: .9em;
+        font-weight: 700;
+      }
+
+      input, button[type="submit"] {
+        padding: .5em .75em;
+        border: 1px solid map-get($gray-clrs, 300);
+        border-radius: .25em;
+        font-size: 1em;
+      }
+
+      input {
+        transition: border-color get-transition-time(), box-shadow get-transition-time();
+
+        &:is(:focus, :hover) {
+          outline: none;
+          border-color: map-get($primary-clrs, 500);
+          box-shadow: inset 0 0 .2em map-get($primary-clrs, 300);
+        }
+      }
+
+      button[type="submit"] {
+        cursor: pointer;
+        background-color: map-get($gray-clrs, 300);
+        font-size: 1.1em;
+        text-transform: uppercase;
+        transition: background-color get-transition-time(), color get-transition-time();
+
+        &:is(:hover, :focus-visible) {
+          background-color: map-get($gray-clrs, 400);
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  ::backdrop {
+    background: linear-gradient(45deg, map-get($secondary-clrs, 500) 10%, map-get($primary-clrs, 500) 50%, map-get($secondary-clrs, 500) 90%);
+    opacity: 0.8;
+  }
+}
