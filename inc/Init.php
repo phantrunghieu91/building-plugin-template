@@ -28,6 +28,7 @@ final class Init
       Base\WidgetController::class,
       Base\TestimonialController::class,
       Base\CustomTemplatesController::class,
+      Base\AuthController::class,
     ];
   }
 

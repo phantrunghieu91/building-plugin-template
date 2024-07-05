@@ -25,8 +25,9 @@ const paths = {
     watch: 'src/scss/**/*.scss',
   },
   ts: {
-    src: 'src/ts/',
-    entries: ['jins-plugin', 'jins-plugin-form', 'jins-plugin-slider'],
+    src: 'src/ts/exports/',
+    entries: [//'jins-plugin', 'jins-plugin-form', 'jins-plugin-slider', 
+      'jins-plugin-auth'],
     dest: './assets/js',
     watch: 'src/ts/**/*.ts',
   },
